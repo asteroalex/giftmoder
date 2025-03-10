@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 # Define the command handler for /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text('')
+    await update.message.reply_text('🐒')
 
 # Define the message handler to delete links or respond to specific ones
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
