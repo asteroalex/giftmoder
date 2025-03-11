@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text('🐒')
 
-# Define the message handler to delete links or respond to specific ones
+# Define the message handler to delete HTTP or HTTPS links or respond to specific ones
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.message
     text = message.text
@@ -41,7 +41,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
         await message.reply_text(response_text, parse_mode=ParseMode.MARKDOWN)
         if not is_admin:
             await message.delete()
-    elif ('http://' in text or 'https://' in text or 't.me/') and not is_admin:
+    elif (re.search(r'http://|https://', text)) and not is_admin:
         await message.delete()
 
 def main() -> None:
